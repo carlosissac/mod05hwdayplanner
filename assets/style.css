@@ -33,6 +33,7 @@
 #plan-top-table,
 #plan-sub-table {
     margin-bottom: 0rem;
+    object-fit: cover;
 }
 
 #plan-table-head,
@@ -42,12 +43,6 @@
     width: 100%;
     font-size: 0.8rem;
 }
-
-/*
-#plan-table-body {
-    height: 600px;
-}
-*/
 
 #plan-tbl-head-col0,
 #plan-tbl-bdy-cel0 {
@@ -131,6 +126,21 @@
 
 #small-gatito {
     color: black;
+}
+
+
+/*Less*/
+@media (max-height: 568px) {  
+    
+    #main-section-row-top {
+        padding: 0.5rem;
+    }
+    #main-section-row-bottom {
+        padding: 1.5rem;
+    }
+    #plan-table-body {
+        height: 200px;
+    }
 }
 
 /*IP5SE*/
