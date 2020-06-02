@@ -1,0 +1,274 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.nav {
+    position: fixed;
+}
+
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.body {
+    overflow: auto;
+}
+
+#plan-card-header {
+    padding: 0.5rem;
+    text-align: center;
+}
+
+#plan-card-body-header {
+    padding: 5px;
+    text-align: center;
+}
+
+#plan-card-body-top {
+    padding: 0;
+}
+
+#plan-table,
+#plan-top-table,
+#plan-sub-table {
+    margin-bottom: 0rem;
+}
+
+#plan-table-head,
+#plan-table-body {
+    display: grid;
+    overflow: auto;
+    width: 100%;
+    font-size: 0.8rem;
+}
+
+/*
+#plan-table-body {
+    height: 600px;
+}
+*/
+
+#plan-tbl-head-col0,
+#plan-tbl-bdy-cel0 {
+    padding: 0px;
+    padding-left: 0.7rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    padding-right: 0.7rem;
+    text-align: center;
+    width: 25%;
+}
+
+#plan-tbl-head-col1,
+#plan-tbl-bdy-cel1 {
+    padding: 0px;
+    padding-left: 0.7rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    padding-right: 0.7rem;
+    text-align: left;
+    width: 35%;
+}
+
+#plan-tbl-head-col2,
+#plan-tbl-bdy-cel2{
+    padding: 0px;
+    padding-left: 0.7rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    padding-right: 0.7rem;
+    text-align: left;
+    width: 40%;
+}
+
+#plan-tbl-head-col3,
+#plan-tbl-bdy-cel3 {
+    padding: 0px;
+    padding-left: 0.7rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+    padding-right: 0.7rem;
+    text-align: center;
+    width: 5%;
+}
+
+#plan-table-footer {
+    padding: 0.1rem;
+    text-align: center;
+}
+
+#about-img {
+    width: 100%;
+    object-fit: cover;
+}
+
+#about-card-list-subtxt {
+    margin-bottom: 0px;
+}
+
+#about-list-group,
+#about-link-row,
+#about-timestamp-lbl {
+    text-align: right;
+}
+
+.sf-container {
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+    padding-bottom: 0.2rem;
+}
+
+.sticky-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #FCE38A;
+    text-align: right;
+    padding: 0px;
+}
+
+#small-gatito {
+    color: black;
+}
+
+/*IP5SE*/
+@media (min-height: 568px) {  
+    
+    #main-section-row-top {
+        padding: 0.5rem;
+    }
+    #main-section-row-bottom {
+        padding: 1.5rem;
+    }
+    #plan-table-body {
+        height: 295px;
+    }
+}
+
+/*GALAXYS5*/
+@media (min-height: 640px) {  
+    
+    #main-section-row-top {
+        padding: 0.5rem;
+    }
+    #main-section-row-bottom {
+        padding: 1.5rem;
+    }
+    #plan-table-body {
+        height: 355px;
+    }
+}
+
+/*IP678*/
+@media (min-height: 667px) {  
+    
+    #main-section-row-top {
+        padding: 0.5rem;
+    }
+    #main-section-row-bottom {
+        padding: 1.5rem;
+    }
+    #plan-table-body {
+        height: 375px;
+    }
+}
+
+/*PIXEL2*/
+@media (min-height: 731px) {  
+    
+    #main-section-row-top {
+        padding: 0.5rem;
+    }
+    #main-section-row-bottom {
+        padding: 1.5rem;
+    }
+    #plan-table-body {
+        height: 445px;
+    }
+}
+
+/*IP678+*/
+@media (min-height: 736px) {  
+    
+    #main-section-row-top {
+        padding: 0.5rem;
+    }
+    #main-section-row-bottom {
+        padding: 1.5rem;
+    }
+    #plan-table-body {
+        height: 435px;
+    }
+}
+
+/*IPX*/
+@media (min-height: 812px) {  
+    
+    #main-section-row-top {
+        padding: 0.5rem;
+    }
+    #main-section-row-bottom {
+        padding: 0rem;
+    }
+    #plan-table-body {
+        height: 515px;
+    }
+}
+
+/*PIXEL2XL*/
+@media (min-height: 823px) {  
+    
+    #main-section-row-top {
+        padding: 0.5rem;
+    }
+    #main-section-row-bottom {
+        padding: 0rem;
+    }
+    #plan-table-body {
+    height: 535px;
+    }
+}
+
+/*IPAD*/
+@media (min-height: 1024px) {  
+    
+    #main-section-row-top {
+        padding: 0.5rem;
+    }
+    #main-section-row-bottom {
+        padding: 5rem;
+    }
+    #plan-table-body {
+        height: 600px;
+    }
+}
+
+/*IPADPRO*/
+@media (min-height: 1366px) {  
+    
+    #main-section-row-top {
+        padding: 0.5rem;
+    }
+    #main-section-row-bottom {
+        padding: 5rem;
+    }
+    #plan-table-body {
+        height: 600px;
+    }
+}
+
+/*allelse*/
+@media (min-height: 1367px) {
+
+    #main-section-row-top {
+        padding: 0.5rem;
+    }
+    #main-section-row-bottom {
+        padding: 1.5rem;
+    }
+    #plan-table-body {
+        height: 600px;
+    }
+}

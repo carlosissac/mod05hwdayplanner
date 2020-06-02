@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day Planner</title>
+    <!-- BOOTSTRAP LINKAGE -->    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/litera/bootstrap.min.css"> 
+    <!-- FONTAWESOME LINKAGE -->    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css">
+    <!-- BOOTSTRAP JS FOR NAV TOGGLE -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- CSS REF -->
+    <link rel="stylesheet" href="./assets/style.css">
+<body>
+
+  <!-- NAVBAR START -->
+  <!-- switch between primary, dark and light -->                                              
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand mr-auto" href="./index.html"><i class="fab fa-usb"></i> Day.Planner</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-about"><a class="nav-link" href="./about.html"> About</a></li>
+        <li class="nav-mock"><a class="nav-link" href="#">TestMode</a></li>
+        <li class="nav-timefor"><a class="nav-link" href="#">TimeFormat</a></li>
+        <li class="nav-clear"><a class="nav-link" href="#">ClearData</a></li>
+        <li class="nav-index active"><a class="nav-link" href="#">Day.Planner<span class="sr-only">(current)</span></a></li>
+      </ul>
+    </div>
+  </nav>
+  <!-- NAVBAR END -->
+  <section id="main-section">
+    <div id="main-section-row-top" class="row"></div>
+    <div id="main-section-row-main" class="row">
+      <div id="main-section-area-left" class="col-lg-4"></div>
+      <div id="main-section-area-center" class="col-lg-4">
+        <div id="plan-card" class="card">
+          <h3 id="plan-card-header" class="card-header">Day Planner</h3>
+          <div id="plan-card-body-header" class="card-body">
+              <h6 style="display:inline;"> &#60; </h6><h6 style="display:inline;"> Day/Month/Year </h6><h6 style="display:inline;"> &#62; </h6>
+          </div>
+        </div>
+        <div id="plan-card" class="card">
+          <div id="plan-card-body-top" class="card-body">
+              <div id="plan-sub-section">
+                <table id="plan-table" class="table table-hover">
+                  <thead id="plan-table-head">
+                    <tr>
+                      <th id="plan-tbl-head-col0" scope="col">Hr.</th>
+                      <th id="plan-tbl-head-col1" scope="col">Activity</th>
+                      <th id="plan-tbl-head-col2" scope="col">Desc.</th>
+                      <th id="plan-tbl-head-col3" scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="plan-table-body">
+                    <tr class="table-secondary">
+                      <td id="plan-tbl-bdy-cel0">12AM</th>
+                      <td id="plan-tbl-bdy-cel1"><span class="badge badge-info">Commute</span></td>
+                      <td id="plan-tbl-bdy-cel2">Description AA</td>
+                      <td id="plan-tbl-bdy-cel3"><i class="fas fa-edit"></i></td>
+                    </tr>
+                    <tr class="table-secondary">
+                      <td id="plan-tbl-bdy-cel0">01AM</th>
+                      <td id="plan-tbl-bdy-cel1"><span class="badge badge-info">Personal</span></td>
+                      <td id="plan-tbl-bdy-cel2">Description BB</td>
+                      <td id="plan-tbl-bdy-cel3"><i class="fas fa-edit"></i></td>
+                    </tr>
+                    <tr class="table-secondary">
+                      <td id="plan-tbl-bdy-cel0">02AM</th>
+                      <td id="plan-tbl-bdy-cel1"><span class="badge badge-info">Task</span></td>
+                      <td id="plan-tbl-bdy-cel2">Description CC</td>
+                      <td id="plan-tbl-bdy-cel3"><i class="fas fa-edit"></i></td>
+                    </tr>
+                    <tr class="table-secondary">
+                      <td id="plan-tbl-bdy-cel0">03AM</th>
+                      <td id="plan-tbl-bdy-cel1"><span class="badge badge-info">In-Person</span></td>
+                      <td id="plan-tbl-bdy-cel2">Description DD</td>
+                      <td id="plan-tbl-bdy-cel3"><i class="fas fa-edit"></i></td>
+                    </tr>
+                    <tr class="table-secondary">
+                      <td id="plan-tbl-bdy-cel0">04AM</th>
+                      <td id="plan-tbl-bdy-cel1"><span class="badge badge-info">Open</span></td>
+                      <td id="plan-tbl-bdy-cel2">Description EE</td>
+                      <td id="plan-tbl-bdy-cel3"><i class="fas fa-edit"></i></td>
+                    </tr>
+                    <tr class="table-secondary">
+                      <td id="plan-tbl-bdy-cel0">05AM</th>
+                      <td id="plan-tbl-bdy-cel1"><span class="badge badge-info">Commute</span></td>
+                      <td id="plan-tbl-bdy-cel2">Description DD</td>
+                      <td id="plan-tbl-bdy-cel3"><i class="fas fa-edit"></i></td>
+                    </tr>
+                    <tr class="table-secondary">
+                      <td id="plan-tbl-bdy-cel0">06AM</th>
+                      <td id="plan-tbl-bdy-cel1"><span class="badge badge-info">Personal</span></td>
+                      <td id="plan-tbl-bdy-cel2">Description EE</td>
+                      <td id="plan-tbl-bdy-cel3"><i class="fas fa-edit"></i></td>
+                    </tr>
+                    <tr class="table-secondary">
+                      <td id="plan-tbl-bdy-cel0">07AM</th>
+                      <td id="plan-tbl-bdy-cel1"><span class="badge badge-info">Task</span></td>
+                      <td id="plan-tbl-bdy-cel2">Description AA</td>
+                      <td id="plan-tbl-bdy-cel3"><i class="fas fa-edit"></i></td>
+                    </tr>
+                    <tr class="table-secondary">
+                      <td id="plan-tbl-bdy-cel0">08AM</th>
+                      <td id="plan-tbl-bdy-cel1"><span class="badge badge-info">In-Person</span></td>
+                      <td id="plan-tbl-bdy-cel2">Description FF</td>
+                      <td id="plan-tbl-bdy-cel3"><i class="fas fa-edit"></i></td>                    
+                    </tr>
+                    <tr class="table-danger">
+                      <td id="plan-tbl-bdy-cel0">09AM</th>
+                      <td id="plan-tbl-bdy-cel1"><span class="badge badge-info">Open</span></td>
+                      <td id="plan-tbl-bdy-cel2">Description GG</td>
+                      <td id="plan-tbl-bdy-cel3"><i class="fas fa-edit"></i></td>
+                    </tr>
+                    <tr class="table-default">
+                      <td id="plan-tbl-bdy-cel0">10AM</th>
+                      <td id="plan-tbl-bdy-cel1"><span class="badge badge-info">Commute</span></td>
+                      <td id="plan-tbl-bdy-cel2">Description HH</td>
+                      <td id="plan-tbl-bdy-cel3"><i class="fas fa-edit"></i></td>
+                    </tr>
+                    <tr class="table-default">
+                      <td id="plan-tbl-bdy-cel0">11AM</th>
+                      <td id="plan-tbl-bdy-cel1"><span class="badge badge-info">Personal</span></td>
+                      <td id="plan-tbl-bdy-cel2">Description II</td>
+                      <td id="plan-tbl-bdy-cel3"><i class="fas fa-edit"></i></td>
+                    </tr>
+                    <tr class="table-default">
+                      <td id="plan-tbl-bdy-cel0">12PM</th>
+                      <td id="plan-tbl-bdy-cel1"><span class="badge badge-info">Task</span></td>
+                      <td id="plan-tbl-bdy-cel2">Description JJ</td>
+                      <td id="plan-tbl-bdy-cel3"><i class="fas fa-edit"></i></td>
+                    </tr>
+                    <tr class="table-default">
+                      <td id="plan-tbl-bdy-cel0">01PM</th>
+                      <td id="plan-tbl-bdy-cel1"><span class="badge badge-info">In-Person</span></td>
+                      <td id="plan-tbl-bdy-cel2">Description KK</td>
+                      <td id="plan-tbl-bdy-cel3"><i class="fas fa-edit"></i></td>
+                    </tr>
+                    <tr class="table-default">
+                      <td id="plan-tbl-bdy-cel0">02PM</th>
+                      <td id="plan-tbl-bdy-cel1"><span class="badge badge-info">Open</span></td>
+                      <td id="plan-tbl-bdy-cel2">Description LL</td>
+                      <td id="plan-tbl-bdy-cel3"><i class="fas fa-edit"></i></td>
+                    </tr>
+                    <tr class="table-default">
+                      <td id="plan-tbl-bdy-cel0">03PM</th>
+                      <td id="plan-tbl-bdy-cel1"><span class="badge badge-info">Commute</span></td>
+                      <td id="plan-tbl-bdy-cel2">Description MM</td>
+                      <td id="plan-tbl-bdy-cel3"><i class="fas fa-edit"></i></td>
+                    </tr>
+                    <tr class="table-default">
+                      <td id="plan-tbl-bdy-cel0">04PM</th>
+                      <td id="plan-tbl-bdy-cel1"><span class="badge badge-info">Personal</span></td>
+                      <td id="plan-tbl-bdy-cel2">Description NN</td>
+                      <td id="plan-tbl-bdy-cel3"><i class="fas fa-edit"></i></td>
+                    </tr>
+                    <tr class="table-default">
+                      <td id="plan-tbl-bdy-cel0">05PM</th>
+                      <td id="plan-tbl-bdy-cel1"><span class="badge badge-info">Task</span></td>
+                      <td id="plan-tbl-bdy-cel2">Description OO</td>
+                      <td id="plan-tbl-bdy-cel3"><i class="fas fa-edit"></i></td>
+                    </tr>
+                    <tr class="table-default">
+                      <td id="plan-tbl-bdy-cel0">06PM</th>
+                      <td id="plan-tbl-bdy-cel1"><span class="badge badge-info">Info</span></td>
+                      <td id="plan-tbl-bdy-cel2">Description PP</td>
+                      <td id="plan-tbl-bdy-cel3"><i class="fas fa-edit"></i></td>
+                    </tr>
+                    <tr class="table-default">
+                      <td id="plan-tbl-bdy-cel0">07PM</th>
+                      <td id="plan-tbl-bdy-cel1"><span class="badge badge-info">In-Person</span></td>
+                      <td id="plan-tbl-bdy-cel2">Description QQ</td>
+                      <td id="plan-tbl-bdy-cel3"><i class="fas fa-edit"></i></td>
+                    </tr>
+                    <tr class="table-default">
+                      <td id="plan-tbl-bdy-cel0">08PM</th>
+                      <td id="plan-tbl-bdy-cel1"><span class="badge badge-info">Open</span></td>
+                      <td id="plan-tbl-bdy-cel2">Description RR</td>
+                      <td id="plan-tbl-bdy-cel3"><i class="fas fa-edit"></i></td>
+                    </tr>
+                    <tr class="table-default">
+                      <td id="plan-tbl-bdy-cel0">09PM</th>
+                      <td id="plan-tbl-bdy-cel1"><span class="badge badge-info">Commute</span></td>
+                      <td id="plan-tbl-bdy-cel2">Description SS</td>
+                      <td id="plan-tbl-bdy-cel3"><i class="fas fa-edit"></i></td>
+                    </tr>
+                    <tr class="table-default">
+                      <td id="plan-tbl-bdy-cel0">10PM</th>
+                      <td id="plan-tbl-bdy-cel1"><span class="badge badge-info">Personal</span></td>
+                      <td id="plan-tbl-bdy-cel2">Description TT</td>
+                      <td id="plan-tbl-bdy-cel3"><i class="fas fa-edit"></i></td>
+                    </tr>
+                    <tr class="table-default">
+                      <td id="plan-tbl-bdy-cel0">11PM</th>
+                      <td id="plan-tbl-bdy-cel1"><span class="badge badge-info">Task</span></td>
+                      <td id="plan-tbl-bdy-cel2">Description UU</td>
+                      <td id="plan-tbl-bdy-cel3"><i class="fas fa-edit"></i></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>   
+            </div>              
+          <div id="plan-table-footer">
+            <small id="plan-card-about-subtxt" class="card-text text-muted">For detailed instructions on how to use go to the <a href="./about.html">About</a> page.</small>
+          </div>
+        </div>
+    </div>
+    <div id="main-section-area-right" class="col-lg-4"></div>
+    </div>
+    <div id="main-section-row-bottom" class="row"></div>
+  </section>
+
+
+
+  <!-- STICKY FOOTER START -->
+  <footer>
+    <div class="sticky-footer">
+      <div class="sf-container">
+        <small id="small-gatito">Copyright &copy; Gatito <i class="fas fa-cat">  </i></small>
+      </div>
+    </div>
+  </footer>
+    <!-- STICKY FOOTER END -->
+    <!-- JS SCRIPT LINKAGE -->
+    <!-- <script src="./assets/quiz_script.js"></script> -->
+    <!-- <script src="./assets/questions_script.js"></script> -->
+    <!-- JS SCRIPT LINKAGE -->
+  </body>
+</html>
