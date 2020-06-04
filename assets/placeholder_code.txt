@@ -1,0 +1,25 @@
+            /// TAKES WHATS STORED IN LOCAL STORAGE, CREATES A NEW BUFFER AND ARRANGES EVENTS FROM NEWEST TO OLDEST
+            const array2 = [];
+            if(localStorage.getItem('eventContainerLS')) {
+                var buffer2 = JSON.parse(localStorage.getItem('eventContainerLS'));
+                for(var j=0; j<buffer2.length; j++) {
+                    array2.push(buffer2[j]);
+                }
+            }
+            array2.sort((a,b)=> new Date(String(b.mom_obj)).getTime() - new Date(String(a.mom_obj)).getTime());
+            //console.log(array2);
+            localStorage.setItem('eventContainerLS', JSON.stringify(array2));
+            //console.log(JSON.parse(localStorage.getItem('eventContainerLS')));
+
+            /// TAKES WHATS IS STORED IN LOCAL STORAGE, CREATES A NEW BUFFER AND ARRANGES EVENTS FROM OLDEST TO NEWEST
+            /*const array3 = [];
+            if(localStorage.getItem('eventContainerLS')) {
+                var buffer3 = JSON.parse(localStorage.getItem('eventContainerLS'));
+                for(var k=0; k<buffer3.length; k++) {
+                    array3.push(buffer3[k]);
+                }
+            }
+            array3.sort((a,b)=> new Date(String(a.mom_obj)).getTime() - new Date(String(b.mom_obj)).getTime());
+            //console.log(array3);
+            localStorage.setItem('eventContainerLS', JSON.stringify(array3));
+            console.log(JSON.parse(localStorage.getItem('eventContainerLS')));*/

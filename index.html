@@ -12,6 +12,10 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- JQEURY LINKAGE -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- MOMENT.JS LINKAGE -->
+    <script src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
     <!-- CSS REF -->
     <link rel="stylesheet" href="./assets/style.css">
 <body>
@@ -24,10 +28,10 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav ml-auto">
         <li class="nav-about"><a class="nav-link" href="./about.html"> About</a></li>
-        <li class="nav-mock"><a class="nav-link" href="#">TestMode</a></li>
-        <li class="nav-timefor"><a class="nav-link" href="#">TimeFormat</a></li>
-        <li class="nav-clear"><a class="nav-link" href="#">ClearData</a></li>
-        <li class="nav-index active"><a class="nav-link" href="#">Day.Planner<span class="sr-only">(current)</span></a></li>
+        <li class="nav-mock"><a class="nav-link" href="#">Clear.All</a></li>
+        <li class="nav-timefor"><a class="nav-link" href="#">Test.Mode</a></li>
+        <li class="nav-gt"><a class="nav-link" href="#">Go.To.Date</a></li>
+        <li class="nav-index active"><a class="nav-link" href="#">NOW<span class="sr-only">(current)</span></a></li>
       </ul>
     </div>
   </nav>
@@ -40,7 +44,7 @@
         <div id="plan-card" class="card">
           <h3 id="plan-card-header" class="card-header">Day Planner</h3>
           <div id="plan-card-body-header" class="card-body">
-              <h6 style="display:inline;"> &#60; </h6><h6 style="display:inline;"> Day/Month/Year </h6><h6 style="display:inline;"> &#62; </h6>
+              <h6 id="day-less" style="display:inline;"> &#60;&nbsp &nbsp </h6><h6 id="display-day" style="display:inline;"> Day/Month/Year </h6><h6 id="day-more" style="display:inline;"> &nbsp &nbsp &#62; </h6>
           </div>
         </div>
         <div id="plan-card" class="card">
@@ -213,9 +217,6 @@
     </div>
     <div id="main-section-row-bottom" class="row"></div>
   </section>
-
-
-
   <!-- STICKY FOOTER START -->
   <footer>
     <div class="sticky-footer">
@@ -224,10 +225,10 @@
       </div>
     </div>
   </footer>
-    <!-- STICKY FOOTER END -->
-    <!-- JS SCRIPT LINKAGE -->
-    <!-- <script src="./assets/quiz_script.js"></script> -->
-    <!-- <script src="./assets/questions_script.js"></script> -->
-    <!-- JS SCRIPT LINKAGE -->
+  <!-- STICKY FOOTER END -->
+  <!-- JS SCRIPT LINKAGE -->
+  <script src="./assets/planner_script.js"></script>
+  <script src="./assets/event_script.js"></script>
+  <!-- JS SCRIPT LINKAGE -->
   </body>
 </html>
