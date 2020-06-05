@@ -34,58 +34,31 @@
 #plan-sub-table {
     margin-bottom: 0rem;
     object-fit: cover;
+    overflow-y: scroll;
+    width: 100%;
 }
 
 #plan-table-head,
 #plan-table-body {
     display: grid;
     overflow: auto;
-    width: 100%;
     font-size: 0.8rem;
+    width: 100%;
 }
 
 #plan-tbl-head-col0,
-#plan-tbl-bdy-cel0 {
-    padding: 0px;
-    padding-left: 0.7rem;
-    padding-top: 0.7rem;
-    padding-bottom: 0.7rem;
-    padding-right: 0.7rem;
-    text-align: center;
-    width: 25%;
-}
-
 #plan-tbl-head-col1,
-#plan-tbl-bdy-cel1 {
-    padding: 0px;
-    padding-left: 0.7rem;
-    padding-top: 0.7rem;
-    padding-bottom: 0.7rem;
-    padding-right: 0.7rem;
-    text-align: left;
-    width: 35%;
-}
-
 #plan-tbl-head-col2,
-#plan-tbl-bdy-cel2{
-    padding: 0px;
-    padding-left: 0.7rem;
-    padding-top: 0.7rem;
-    padding-bottom: 0.7rem;
-    padding-right: 0.7rem;
-    text-align: left;
-    width: 40%;
-}
-
-#plan-tbl-head-col3,
-#plan-tbl-bdy-cel3 {
+#plan-tbl-bdy-cel0,
+#plan-tbl-bdy-cel1,
+#plan-tbl-bdy-cel2 {
     padding: 0px;
     padding-left: 0.7rem;
     padding-top: 0.7rem;
     padding-bottom: 0.7rem;
     padding-right: 0.7rem;
     text-align: center;
-    width: 5%;
+    width: 15rem;
 }
 
 #plan-table-footer {

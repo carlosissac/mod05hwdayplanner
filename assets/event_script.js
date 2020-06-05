@@ -1,21 +1,10 @@
 
 var eventHandler = {
 
-    "eventHour" :"",
-    "eventDay" : "",
-    "eventMonth" : "",
-    "eventYear" : "",
-
-    "eventType" : "",
-    "eventDateObj" : moment(),
-    "eventDesc" : "",
-    "eventContainerS" : [],
-
-
     getValidEventID() {
         //GENERATES A RAND NUMBER
         let num = Math.floor(Math.random()*99999);
-        //GETS WHATS IN LS
+        //VERIFIES THAT ITS NOT IN LS
         const array = [];
         if(localStorage.getItem('eventContainerLS')) {
             var buffer = JSON.parse(localStorage.getItem('eventContainerLS'));
@@ -28,32 +17,75 @@ var eventHandler = {
                     num = Math.floor(Math.random()*99999);
                     j=0;
                 }
-                /*else {
-                    console.log(array[j].e_id + " " + num);
-                }*/
                 j++;
             }
         }
-        console.log(num);
         return num;
     },
 
-    //saveToLocalStorage: function(moment_obj, type, desc, new_ev, valid) {
-    saveToLSNew(moment_obj, type, desc) {
-        const array = [];
+    removeSingleLS: function(event_id) {
+        ///looks for eventID in buffer and updates values
+        var buffer = JSON.parse(localStorage.getItem('eventContainerLS'));
+        var i=0;
+        while(i<buffer.length) {
+            if(buffer[i].e_id === event_id) {
+                buffer.splice(i, 1);
+                break;
+            }
+            i++;
+        }
+        localStorage.setItem('eventContainerLS', JSON.stringify(buffer));
+        //console.log(JSON.parse(localStorage.getItem('eventContainerLS')));
+        return 0;
+    },
 
+    getLS: function() {
+        //RETREIVES ALL CONTENTS FROM LS
+        //RETURNS ARRAY
+        const array = [];
+        if(localStorage.getItem('eventContainerLS')) {
+            var buffer = JSON.parse(localStorage.getItem('eventContainerLS'));
+            for(var j=0; j<buffer.length; j++) {
+                array.push(buffer[j]);
+            }
+            localStorage.setItem('eventContainerLS', JSON.stringify(array));
+            //console.log(JSON.parse(localStorage.getItem('eventContainerLS')));
+            return array;
+        }
+        else {
+            return null;
+        }
+    },
+
+    updateToLS: function(event_id, type, desc, valid) {
+        ///looks for eventID in buffer and updates values
+        var buffer = JSON.parse(localStorage.getItem('eventContainerLS'));
+        var i=0;
+        while(i<buffer.length) {
+            if(buffer[i].e_id === event_id) {
+                buffer[i].e_type = type;
+                buffer[i].e_desc = desc;
+                buffer[i].e_valid = valid;
+                break;
+            }
+            i++;
+        }
+        localStorage.setItem('eventContainerLS', JSON.stringify(buffer));
+        //console.log(JSON.parse(localStorage.getItem('eventContainerLS')));
+    },
+
+    saveToLS: function(moment_obj, type, desc, valid) {
+        const array = [];
         let new_entry = {
                 'e_id' : this.getValidEventID(),
-                'e_new' : true,
                 'mom_obj' : moment_obj,
                 'e_type' : type,
                 'e_desc' : desc,
-                'e_valid' : true, 
+                'e_valid' : valid, 
         };
-
         /// TAKES NEW EVENT 
         /// APPENDS TO BUFFER
-        /// SAVES TO LS
+        /// SAVES TO LS 
         if(localStorage.getItem('eventContainerLS')) {
             var buffer = JSON.parse(localStorage.getItem('eventContainerLS'));
             for(var i=0; i<buffer.length; i++) {
@@ -62,7 +94,6 @@ var eventHandler = {
         }
         array.push(new_entry);
         localStorage.setItem('eventContainerLS', JSON.stringify(array));
-
         if(array.length>1) {
             ///TAKES WHATS STORED IN LS 
             ///CREATES A NEW BUFFER
@@ -77,13 +108,12 @@ var eventHandler = {
             }
             array2.sort((a,b)=> new Date(String(b.mom_obj)).getTime() - new Date(String(a.mom_obj)).getTime());
             localStorage.setItem('eventContainerLS', JSON.stringify(array2));
-            console.log(JSON.parse(localStorage.getItem('eventContainerLS')));
+            //console.log(JSON.parse(localStorage.getItem('eventContainerLS')));
         }
-
-        return 0;
+        return new_entry.e_id;
     },
 
-    clearAllLoadMockData() {
+    clearLSLoadMock: function() {
         this.buffer = [];
         localStorage.clear();
         //4 MOCK EVENTS EVERY OTHER 2 HOURS
@@ -110,9 +140,10 @@ var eventHandler = {
             //console.log(mock + " " + type + " " + desc);
             //this.saveToLocalStorage(mock,type,desc,true,true);
             //this.saveToLocalStorage(mock,type,desc);
-            this.saveToLSNew(mock,type,desc);
+            this.saveToLS(mock,type,desc,true);
             
         }
     }
-
 };
+
+

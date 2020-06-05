@@ -23,3 +23,14 @@
             //console.log(array3);
             localStorage.setItem('eventContainerLS', JSON.stringify(array3));
             console.log(JSON.parse(localStorage.getItem('eventContainerLS')));*/
+
+
+                    //"today" : "",
+        //"displayDate" : "",
+        //"displayDay" : "",
+        //"displayMonth" : "",
+        //"displayYear" : "",
+        //"gotoDay" : "", 
+        //"gotoMonth" : "",
+        //"gotoYear" : "",
+        //"timeFormat" :  false, //false = AMPM, true = 24HR
