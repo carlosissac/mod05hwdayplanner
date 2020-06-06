@@ -53,3 +53,14 @@
                 }
                 j++;
             });*/
+
+
+            /*j=0;
+            console.log("EVVVVVVENT-IDDDDDDD");
+            $('tr').each(function() {
+                if(($(this).attr('id') === "plan-list-row") ) {
+                    let ic = $(this).attr('event-id');
+                    console.log(ic);
+                }
+                j++;
+            });*/

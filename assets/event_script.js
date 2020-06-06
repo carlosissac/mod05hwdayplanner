@@ -136,7 +136,7 @@ var eventHandler = {
             else {
                 console.log("clearAllLoadMockData NA");
             }
-            desc = "DEEEEEEEESC" + i;
+            desc = "DEEEEEESC" + i;
             //console.log(mock + " " + type + " " + desc);
             //this.saveToLocalStorage(mock,type,desc,true,true);
             //this.saveToLocalStorage(mock,type,desc);

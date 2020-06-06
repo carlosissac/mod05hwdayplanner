@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day Planner</title>
+    <title>Day.Planner</title>
+    <!-- JQEURY LINKAGE -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- MOMENT.JS LINKAGE -->
+    <script src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
     <!-- BOOTSTRAP LINKAGE -->    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/litera/bootstrap.min.css"> 
     <!-- FONTAWESOME LINKAGE -->    
@@ -12,10 +16,6 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <!-- JQEURY LINKAGE -->
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <!-- MOMENT.JS LINKAGE -->
-    <script src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
     <!-- CSS REF -->
     <link rel="stylesheet" href="./assets/style.css">
 <body>
@@ -36,15 +36,16 @@
     </div>
   </nav>
   <!-- NAVBAR END -->
+  <!-- MAIN START -->
   <section id="main-section">
     <div id="main-section-row-top" class="row"></div>
     <div id="main-section-row-main" class="row">
       <div id="main-section-area-left" class="col-lg-4"></div>
       <div id="main-section-area-center" class="col-lg-4">
         <div id="plan-card" class="card">
-          <h3 id="plan-card-header" class="card-header">Day Planner</h3>
+          <h3 id="plan-card-header" class="card-header">Day.Planner</h3>
           <div id="plan-card-body-header" class="card-body">
-              <h6 id="day-less" style="display:inline;"><i class="fas fa-caret-square-left"></i>&nbsp&nbsp</h6><h6 id="display-day" style="display:inline;"> Day/Month/Year </h6><h6 id="day-more" style="display:inline;">&nbsp&nbsp<i class="fas fa-caret-square-right"></i>&nbsp&nbsp</h6><h6 id="time-format-lbl" style="display:inline;"> Time.Format </h6>
+              <h6 id="day-less" style="display:inline;"><i id="btn-left" class="fas fa-caret-square-left"></i>&nbsp&nbsp</h6><h6 id="display-day" style="display:inline;"> Day/Month/Year </h6><h6 id="day-more" style="display:inline;">&nbsp&nbsp<i id="btn-right" class="fas fa-caret-square-right"></i>&nbsp&nbsp</h6><h6 id="time-format-lbl" style="display:inline;"> Time.Format </h6>
           </div>
         </div>
         <div id="plan-card" class="card">
@@ -72,6 +73,27 @@
     </div>
     <div id="main-section-row-bottom" class="row"></div>
   </section>
+  <!-- MAIN END -->
+  <!-- MODAL MOCK START -->
+  <div class="modal fade" id="mock-modal" tabindex="-1" role="dialog" aria-labelledby="mock-modal-label" aria-hidden="true" data-keyboard="false">
+    <div id="mock-modal-dialog" class="modal-dialog" role="document">
+      <div id="mock-modal-content" class="modal-content">
+        <div id="mock-modal-header" class="modal-header">
+          <h5 id="mock-modal-label" class="modal-title">Day.Planner</h5>
+        </div>
+        <div id="mock-modal-body" class="modal-body">
+          <form>
+            <div class="form-group" style="margin: 0px;">
+              <label class="col-form-label">Message:</label>
+              <textarea class="form-control" rows="3" id="mock-modal-msgarea" readonly></textarea>
+            </div>
+          </form>
+          <div class="modal-footer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL EXIT END -->
   <!-- STICKY FOOTER START -->
   <footer>
     <h1 id="plan-timer" class="time" hidden>timer</h1>

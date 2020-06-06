@@ -21,13 +21,56 @@ $(document).ready(function() {
 
         fetchLS: function() {
             this.ec = this.eh.getLS();
-            console.log(this.ec);
+            //console.log(this.ec);
             return 0;
         },
 
-
-        lbEventLinker: function(hour) {
+        lbType: function(hour) {
+            //display date + hour vs Event Object moment
+            var disp_date = this.displayDate;
+            disp_date.hour(hour).minute(0).seconds(0).milliseconds(0);
+            var i = 0;
+            while(i<this.ec.length) {
+                var ev_obj = this.ec[i].mom_obj;
+                var same = disp_date.isSame(ev_obj,'hour');
+                if(same) {
+                    return this.ec[i].e_type;
+                }
+                i++;
+            }
             return 0;
+        },
+
+        lbEventID: function(hour) {
+            //display date + hour vs Event Object moment
+            var disp_date = this.displayDate;
+            disp_date.hour(hour).minute(0).seconds(0).milliseconds(0);
+            var i = 0;
+            while(i<this.ec.length) {
+                var ev_obj = this.ec[i].mom_obj;
+                var same = disp_date.isSame(ev_obj,'hour');
+                if(same) {
+                    return this.ec[i].e_id;
+                }
+                i++;
+            }
+            return 0;
+        },
+
+        lbDesc: function(hour) {
+            //display date + hour vs Event Object moment
+            var disp_date = this.displayDate;
+            disp_date.hour(hour).minute(0).seconds(0).milliseconds(0);
+            var i = 0;
+            while(i<this.ec.length) {
+                var ev_obj = this.ec[i].mom_obj;
+                var same = disp_date.isSame(ev_obj,'hour');
+                if(same) {
+                    return this.ec[i].e_desc;
+                }
+                i++;
+            }
+            return "";
         },
 
         lbTimeFormatHandler: function(hour) {
@@ -94,9 +137,15 @@ $(document).ready(function() {
 
         listBuilder: function() {
 
+            this.fetchLS();
+            
             $("#plan-table-body").empty();
             var i=0;
             while(i<24) {
+                
+                //////TR STARTS/////
+                var e_id = this.lbEventID(i);  //// retrieves e_ID
+                //// need function to verify and update valid tag according to time use lblTimeValidator 
                 var tr = document.createElement("tr");
                 $(tr).attr("id","plan-list-row");
                 if(this.lbTimeValidator(i) === 0) {
@@ -109,29 +158,70 @@ $(document).ready(function() {
                 else if (this.lbTimeValidator(i) === 2) {
                     $(tr).attr("class","table-default");
                 }
+                //if(e_id) {
+                    $(tr).attr("event-id",e_id);
+                //}
+                //////TR ENDS/////
+
+                //////TD0 STARTS/////
                 var td0 = document.createElement("td");
                 $(td0).attr("id","plan-tbl-bdy-cel0");
                 $(td0).text(this.lbTimeFormatHandler(i));
                 $(tr).append(td0);
+                //////TD0 ENDS/////
 
+                //////TD1 STARTS/////
                 var td1 = document.createElement("td");
                 $(td1).attr("id","plan-tbl-bdy-cel1");
-                $(td1).text("");
+                if(e_id) {
+                    $(td1).text(this.lbDesc(i));
+                }
+                else {
+                    $(td1).text("");
+                }
                 $(tr).append(td1);
+                //////TD1 ENDS/////
 
+                //////TD2 STARTS/////
                 var td2 = document.createElement("td");
                 $(td2).attr("id","plan-tbl-bdy-cel2");
-                if((this.lbTimeValidator(i) === 0) || (this.lbTimeValidator(i) === 1)) {
-                    //we will have to review once we have eventContainer plugged in 
+                if(e_id) {
+                    if ((this.lbType(i)) === "In-Person") {
+                        var sp = document.createElement("span");
+                        $(sp).attr("class","badge badge-warning");
+                        $(sp).text("In-Person");
+                    }
+                    else if ((this.lbType(i)) === "Commute") {
+                        var sp = document.createElement("span");
+                        $(sp).attr("class","badge badge-primary");
+                        $(sp).text("Commute");
+                    }
+                    else if ((this.lbType(i)) === "Task") {
+                        var sp = document.createElement("span");
+                        $(sp).attr("class","badge badge-info");
+                        $(sp).text("Task");
+                    }
+                    else if ((this.lbType(i)) === "Personal") {
+                        var sp = document.createElement("span");
+                        $(sp).attr("class","badge badge-success");
+                        $(sp).text("Personal");
+                    }
+                    $(td2).append(sp); 
                 }
-                else if (this.lbTimeValidator(i) === 2) {
+                else {
+                    if((this.lbTimeValidator(i) === 0) || (this.lbTimeValidator(i) === 1)) {
+                        //we will have to review once we have eventContainer plugged in 
+                    }
+                    else if (this.lbTimeValidator(i) === 2) {
                         var sp = document.createElement("span");
                         $(sp).attr("class","badge badge-dark");
                         $(sp).text("Open");
                         $(td2).append(sp); 
+                    }
                 }
-
                 $(tr).append(td2);
+                //////TD2 ENDS/////
+
                 $("#plan-table-body").append(tr);
                 i++;
             }
@@ -142,7 +232,6 @@ $(document).ready(function() {
             if(same) {
                 $("#is-current")[0].scrollIntoView();
             }
-
             return 0;
         },
 
@@ -246,28 +335,26 @@ $(document).ready(function() {
             }
             else {
                 this.displayFormat = true;
-                $("#time-format-lbl").text("AM/PM");
+                $("#time-format-lbl").text("AM.PM");
             }
         }
     };
 
     dp = dayPlanner;
 
+    $(document.body).on("click", "tr[event-id]", function() {
+        console.log($(this).attr('event-id'));
+    });
+
     $("#nav-mock").click(function(event) {
-        console.log("Mooooooooock Mode");
+        $("#mock-modal").modal("show"); 
         dp.clearLSLoadMock();
         dp.fetchLS();
+        dp.listBuilder();
     });
 
     $("#nav-format").click(function(event) {
         dp.timeFormatToggle();
-        dp.listBuilder();
-    });
-
-    $("#day-less").click(function(event) {
-        event.preventDefault();
-        dp.subsOneDisplayDay();
-        dp.displayDateUI();
         dp.listBuilder();
     });
 
@@ -288,7 +375,12 @@ $(document).ready(function() {
     function currentState() {
         dp.storeTodaysDate();
         dp.displayDateUI();
-        $("#time-format-lbl").text("AM/PM");
+        if(dp.displayFormat) {
+            $("#time-format-lbl").text("AM.PM");
+        }
+        else {
+            $("#time-format-lbl").text("24Hr.");
+        }
         dp.listBuilder();
         return 0;
     }
