@@ -64,7 +64,6 @@ $(document).ready(function() {
                 else { 
                     return hour + "Hrs.";
                 }
-
             } 
             return 0;
         },
