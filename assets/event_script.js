@@ -53,7 +53,7 @@ var eventHandler = {
             return array;
         }
         else {
-            return null;
+            return 0;
         }
     },
 
@@ -143,7 +143,14 @@ var eventHandler = {
             this.saveToLS(mock,type,desc,true);
             
         }
-    }
+    },
+
+    clearLS: function() {
+        this.buffer = [];
+        localStorage.clear();
+        //this.saveToLS(,type,desc,true);          
+    },
+
 };
 
 

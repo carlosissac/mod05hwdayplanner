@@ -75,9 +75,13 @@
     width: 15rem;
 }
 
-#plan-tbl-head-col1,
-#plan-tbl-bdy-cel1 {
+#plan-tbl-head-col1{
     text-align: center;
+    width: 25rem;
+}
+
+#plan-tbl-bdy-cel1 {
+    text-align: left;
     width: 25rem;
 }
 
@@ -87,9 +91,22 @@
     width: 15rem;
 }
 
+#plan-badge {
+    width: 6rem;
+}
+
 #plan-table-footer {
     padding: 0.1rem;
     text-align: center;
+}
+
+#clear-modal-footer,
+#mock-modal-footer {
+    text-align: right;
+}
+
+#mock-modal-msgarea {
+    font-size: 0.9rem;
 }
 
 #about-img {

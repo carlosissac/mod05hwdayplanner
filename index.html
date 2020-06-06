@@ -19,7 +19,7 @@
     <!-- CSS REF -->
     <link rel="stylesheet" href="./assets/style.css">
 <body>
-
+  
   <!-- NAVBAR START -->
   <!-- switch between primary, dark and light -->                                              
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -75,7 +75,7 @@
   </section>
   <!-- MAIN END -->
   <!-- MODAL MOCK START -->
-  <div class="modal fade" id="mock-modal" tabindex="-1" role="dialog" aria-labelledby="mock-modal-label" aria-hidden="true" data-keyboard="false">
+  <div class="modal fade" id="mock-modal" tabindex="-1" role="dialog" aria-labelledby="mock-modal-label" data-backdrop="static" aria-hidden="true" data-keyboard="false">
     <div id="mock-modal-dialog" class="modal-dialog" role="document">
       <div id="mock-modal-content" class="modal-content">
         <div id="mock-modal-header" class="modal-header">
@@ -85,15 +85,43 @@
           <form>
             <div class="form-group" style="margin: 0px;">
               <label class="col-form-label">Message:</label>
-              <textarea class="form-control" rows="3" id="mock-modal-msgarea" readonly></textarea>
+              <textarea class="form-control" rows="7" id="mock-modal-msgarea" readonly></textarea>
             </div>
           </form>
           <div class="modal-footer"></div>
+            <div id="mock-modal-footer">
+              <button id="mock-modal-btn-ok" class="btn  btn-primary">OK</button>
+              <button id="mock-modal-btn-cancel" class="btn btn-danger">Cancel</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
   <!-- MODAL EXIT END -->
+  <!-- MODAL CLEAR START -->
+  <div class="modal fade" id="clear-modal" tabindex="-1" role="dialog" aria-labelledby="clear-modal-label" data-backdrop="static" aria-hidden="true" data-keyboard="false">
+    <div id="clear-modal-dialog" class="modal-dialog" role="document">
+      <div id="clear-modal-content" class="modal-content">
+        <div id="clear-modal-header" class="modal-header">
+          <h5 id="clear-modal-label" class="modal-title">Day.Planner</h5>
+        </div>
+        <div id="clear-modal-body" class="modal-body">
+          <form>
+            <div class="form-group" style="margin: 0px;">
+              <label class="col-form-label">Message:</label>
+              <textarea class="form-control" rows="3" id="clear-modal-msgarea" readonly></textarea>
+            </div>
+          </form>
+          <div class="modal-footer"></div>
+            <div id="clear-modal-footer">
+              <button id="clear-modal-btn-ok" class="btn  btn-primary">OK</button>
+              <button id="clear-modal-btn-cancel" class="btn btn-danger">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL CLEAR END -->
   <!-- STICKY FOOTER START -->
   <footer>
     <h1 id="plan-timer" class="time" hidden>timer</h1>

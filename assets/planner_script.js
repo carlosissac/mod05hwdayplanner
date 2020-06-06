@@ -14,6 +14,12 @@ $(document).ready(function() {
         "displayDate" : "",
         "displayFormat" : true, //AMPM = true, 24hour = false
 
+        clearLS: function() {
+            this.eh.clearLS();
+            this.fetchLS();
+            return 0;
+        },
+
         clearLSLoadMock: function() {
             this.eh.clearLSLoadMock();
             return 0;
@@ -21,7 +27,7 @@ $(document).ready(function() {
 
         fetchLS: function() {
             this.ec = this.eh.getLS();
-            //console.log(this.ec);
+            //console.log(this.ec);g
             return 0;
         },
 
@@ -185,24 +191,22 @@ $(document).ready(function() {
                 //////TD2 STARTS/////
                 var td2 = document.createElement("td");
                 $(td2).attr("id","plan-tbl-bdy-cel2");
+                var sp = document.createElement("span");
+                $(sp).attr("id","plan-badge");
                 if(e_id) {
-                    if ((this.lbType(i)) === "In-Person") {
-                        var sp = document.createElement("span");
+                    if ((this.lbType(i)) === "In-Person") {    
                         $(sp).attr("class","badge badge-warning");
                         $(sp).text("In-Person");
                     }
                     else if ((this.lbType(i)) === "Commute") {
-                        var sp = document.createElement("span");
                         $(sp).attr("class","badge badge-primary");
                         $(sp).text("Commute");
                     }
                     else if ((this.lbType(i)) === "Task") {
-                        var sp = document.createElement("span");
                         $(sp).attr("class","badge badge-info");
                         $(sp).text("Task");
                     }
                     else if ((this.lbType(i)) === "Personal") {
-                        var sp = document.createElement("span");
                         $(sp).attr("class","badge badge-success");
                         $(sp).text("Personal");
                     }
@@ -213,7 +217,6 @@ $(document).ready(function() {
                         //we will have to review once we have eventContainer plugged in 
                     }
                     else if (this.lbTimeValidator(i) === 2) {
-                        var sp = document.createElement("span");
                         $(sp).attr("class","badge badge-dark");
                         $(sp).text("Open");
                         $(td2).append(sp); 
@@ -221,7 +224,6 @@ $(document).ready(function() {
                 }
                 $(tr).append(td2);
                 //////TD2 ENDS/////
-
                 $("#plan-table-body").append(tr);
                 i++;
             }
@@ -235,13 +237,13 @@ $(document).ready(function() {
             return 0;
         },
 
-        clearEventVariables: function() {
+        /*clearEventVariables: function() {
             this.e_id = "";
             this.e_mom = "";
             this.e_type = "";
             this.e_desc = "";
             this.e_valid = "";
-        },
+        },*/
 
         createSingleEvent: function(month, day, year, hour, type, desc) {
             this.e_mom = moment({ years: year, months: month, date: day, hours: hour, minutes:'0', seconds:'0', milliseconds:'0'});
@@ -346,11 +348,36 @@ $(document).ready(function() {
         console.log($(this).attr('event-id'));
     });
 
-    $("#nav-mock").click(function(event) {
-        $("#mock-modal").modal("show"); 
+    $("#clear-modal-btn-ok").click(function(event) {
+        dp.clearLS();
+        dp.fetchLS();
+        dp.listBuilder();
+        $("#clear-modal").modal("hide");
+    });
+
+    $("#clear-modal-btn-cancel").click(function(event) {
+        $("#clear-modal").modal("hide"); 
+    });
+
+    $("#nav-clear").click(function(event) {
+        $("#clear-modal").modal("show"); 
+        $("#clear-modal-msgarea").val("All events will be cleared from Storage.\nClick \"OK\" to proceed and \"Cancel\" to exit.");
+    });
+
+    $("#mock-modal-btn-ok").click(function(event) {
         dp.clearLSLoadMock();
         dp.fetchLS();
         dp.listBuilder();
+        $("#mock-modal").modal("hide"); 
+    });
+
+    $("#mock-modal-btn-cancel").click(function(event) {
+        $("#mock-modal").modal("hide"); 
+    });
+
+    $("#nav-mock").click(function(event) {
+        $("#mock-modal").modal("show"); 
+        $("#mock-modal-msgarea").val("TEST MODE.\nAll events will be cleared from Storage and 4 Mock events be loaded for testing purposes.\nEvents will start 2 hours from this moment and will be 2 hours appart from each other.\nClick \"OK\" to proceed and \"Cancel\" to exit.");
     });
 
     $("#nav-format").click(function(event) {
