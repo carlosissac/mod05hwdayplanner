@@ -14,6 +14,22 @@ $(document).ready(function() {
         "displayDate" : "",
         "displayFormat" : true, //AMPM = true, 24hour = false
 
+        clearLSLoadMock: function() {
+            this.eh.clearLSLoadMock();
+            return 0;
+        },
+
+        fetchLS: function() {
+            this.ec = this.eh.getLS();
+            console.log(this.ec);
+            return 0;
+        },
+
+
+        lbEventLinker: function(hour) {
+            return 0;
+        },
+
         lbTimeFormatHandler: function(hour) {
             if(this.displayFormat) {
                 //AMPM
@@ -78,20 +94,21 @@ $(document).ready(function() {
         },
 
         listBuilder: function() {
-            //console.log(this.displayDate.format('ll'));
-            //console.log(this.listBuilderTimeValidator(1));
+
             $("#plan-table-body").empty();
             var i=0;
-            while(i<24){
+            while(i<24) {
                 var tr = document.createElement("tr");
+                $(tr).attr("id","plan-list-row");
                 if(this.lbTimeValidator(i) === 0) {
-                    $(tr).attr("class","table-secondary"); 
+                    $(tr).attr("class","table-secondary");
                 }
                 else if (this.lbTimeValidator(i) === 1) {
-                    $(tr).attr("class","table-danger"); 
+                    $(tr).attr("class","table-danger");
+                    $(tr).attr("id","is-current");
                 }
                 else if (this.lbTimeValidator(i) === 2) {
-                    $(tr).attr("class","table-default"); 
+                    $(tr).attr("class","table-default");
                 }
                 var td0 = document.createElement("td");
                 $(td0).attr("id","plan-tbl-bdy-cel0");
@@ -114,21 +131,19 @@ $(document).ready(function() {
                         $(sp).text("Open");
                         $(td2).append(sp); 
                 }
+
                 $(tr).append(td2);
                 $("#plan-table-body").append(tr);
                 i++;
             }
 
-            return 0;
-        },
+            var dd = this.displayDate;
+            var td = this.today;
+            var same = dd.isSame(td,'day');
+            if(same) {
+                $("#is-current")[0].scrollIntoView();
+            }
 
-        clearLSLoadMock: function() {
-            this.eh.clearLSLoadMock();
-            return 0;
-        },
-
-        fetchLS: function() {
-            this.ec = this.eh.getLS();
             return 0;
         },
 
@@ -190,7 +205,7 @@ $(document).ready(function() {
 
         storeTodaysDate: function() {
             this.today = moment();
-            this.displayDate = this.today;
+            this.displayDate = moment();
             return 0;
         },
 
@@ -199,7 +214,7 @@ $(document).ready(function() {
         },
 
         subsOneDisplayDay: function() {
-            this.displayDate = this.displayDate.subtract(1, 'days');  
+            this.displayDate = this.displayDate.subtract(1, 'days');
         },
 
         addOneDisplayDay: function() {
@@ -225,26 +240,30 @@ $(document).ready(function() {
             return 0;
         },
 
-        /* timeFormatToggle: function() {
+        timeFormatToggle: function() {
             if(this.displayFormat) {
-                $("#nav-format").text("24Hr");
-
+                this.displayFormat = false;
+                $("#time-format-lbl").text("24Hrs.");
             }
-            else{
-                $("#nav-format").text("AMPM");
+            else {
+                this.displayFormat = true;
+                $("#time-format-lbl").text("AM/PM");
             }
-
-        }*/
-
+        }
     };
 
     dp = dayPlanner;
 
-    /*$("#nav-format").click(function(event) {
-        
+    $("#nav-mock").click(function(event) {
+        console.log("Mooooooooock Mode");
+        dp.clearLSLoadMock();
+        dp.fetchLS();
+    });
+
+    $("#nav-format").click(function(event) {
         dp.timeFormatToggle();
-        console.log("cliiiiiick");
-    });*/
+        dp.listBuilder();
+    });
 
     $("#day-less").click(function(event) {
         event.preventDefault();
@@ -267,16 +286,11 @@ $(document).ready(function() {
         dp.listBuilder();
     });
 
-
-
-
     function currentState() {
         dp.storeTodaysDate();
         dp.displayDateUI();
+        $("#time-format-lbl").text("AM/PM");
         dp.listBuilder();
-        //dp.timeFormatToggle();
-        //create UI List 
-        //dp.setDisplayDate();
         return 0;
     }
 

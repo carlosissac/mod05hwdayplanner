@@ -34,3 +34,22 @@
         //"gotoMonth" : "",
         //"gotoYear" : "",
         //"timeFormat" :  false, //false = AMPM, true = 24HR
+
+
+
+
+                    /*j=0
+            $('tr').each(function(){
+                console.log(j);
+                if( ($(this).attr('id') === "plan-list-row") ) {
+                    //console.log("CURRENT" + j);
+                    //console.log($(this).attr('is-current'));
+                    let ic = $(this).attr('is-current');
+                    console.log(ic);
+                    if(ic === "1") {
+                        console.log("TRUUUUUUUEEEEEEEEEE");
+                        $(this).scrollIntoView(true);
+                    }
+                }
+                j++;
+            });*/
