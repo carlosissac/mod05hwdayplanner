@@ -359,12 +359,7 @@ $(document).ready(function() {
                 this.displayFormat = true;
                 $("#time-format-lbl").text("AM.PM");
             }
-        },
-
-        scheduler: function() {
-
         }
-
     };
 
     dp = dayPlanner;
@@ -427,6 +422,7 @@ $(document).ready(function() {
         }
         else if (eid && (es === 2)) {
             dp.modalEventInfoLoad(eid);
+            $("#edit-date-modal2-lbl").text(ed + " " + ehr);
             $("#edit-modal").modal("show");
         }
         else {
@@ -504,7 +500,7 @@ $(document).ready(function() {
     var count = 0;
     setInterval(function(){
         count++;
-        console.log(count);
+        //console.log(count);
         if(count>15) {
             count = 0;
             dp.fetchLS();

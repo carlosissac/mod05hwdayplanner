@@ -152,7 +152,7 @@ var eventHandler = {
             else {
                 console.log("clearAllLoadMockData NA");
             }
-            desc2 = "DEESC" + i;
+            desc2 = "DEESC" + j;
             this.saveToLS(mock2,desc2,type2,true);
         }
     },
