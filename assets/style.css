@@ -20,7 +20,6 @@
     cursor: pointer;
 }
 
-
 #plan-card-header {
     padding: 0.5rem;
     text-align: center;
@@ -50,6 +49,10 @@
     overflow: auto;
     font-size: 0.8rem;
     width: 100%;
+}
+
+#about-card-subtxt {
+    font-size: 0.9rem;
 }
 
 #plan-table-body {
@@ -302,6 +305,6 @@
         padding: 1.5rem;
     }
     #plan-table-body {
-        height: 600px;
+        height: px;
     }
 }
