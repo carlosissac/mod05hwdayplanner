@@ -18,6 +18,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <!-- CSS REF -->
     <link rel="stylesheet" href="./assets/style.css">
+</head>
 <body>
   <!-- NAVBAR START -->
   <!-- switch between primary, dark and light -->                                              
@@ -89,7 +90,7 @@
           </form>
           <div class="modal-footer">
             <div id="mock-modal-footer">
-              <button id="mock-modal-btn-ok" class="btn  btn-primary">OK</button>
+              <button id="mock-modal-btn-ok" class="btn btn-primary">OK</button>
               <button id="mock-modal-btn-cancel" class="btn btn-danger">Cancel</button>
             </div>
           </div>
@@ -114,7 +115,7 @@
           </form>
           <div class="modal-footer">
             <div id="clear-modal-footer">
-              <button id="clear-modal-btn-ok" class="btn  btn-primary">OK</button>
+              <button id="clear-modal-btn-ok" class="btn btn-primary">OK</button>
               <button id="clear-modal-btn-cancel" class="btn btn-danger">Cancel</button>
             </div>
           </div>
@@ -159,13 +160,13 @@
               </div>
             </div>
             <div class="form-group" style="margin: 0px;">
-              <label class="col-form-label">Clear All Instructions:</label>
+              <label class="col-form-label">Message:</label>
               <textarea class="form-control" rows="1" id="new-modal-msgarea" readonly></textarea>
             </div>
           </form>
           <div class="modal-footer">
             <div id="new-modal-footer">
-              <button id="new-modal-btn-ok" class="btn  btn-primary">OK</button>
+              <button id="new-modal-btn-success" class="btn btn-primary">Save New Event</button>
               <button id="new-modal-btn-cancel" class="btn btn-danger">Cancel</button>
             </div>
           </div>
@@ -185,7 +186,6 @@
           <form>
             <label id="edit-date-modal1-lbl" style="display:inline;">Event Date:</label>
             <h6 id="edit-date-modal2-lbl" style="display:inline; color: green;">Time.Format</h6>
-
             <div class="form-group" style="margin: 0px;">
               <label class="col-form-label">Edit Event Desc:</label>
               <input type="text" placeholder="Edit Event Name ...." class="form-control" id="edit-modal-eventname" maxlength="10">
@@ -210,13 +210,14 @@
               </div>
             </div>
             <div class="form-group" style="margin: 0px;">
-              <label class="col-form-label">Clear All Instructions:</label>
+              <label class="col-form-label">Message:</label>
               <textarea class="form-control" rows="1" id="edit-modal-msgarea" readonly></textarea>
             </div>
           </form>
           <div class="modal-footer">
             <div id="edit-modal-footer">
-              <button id="edit-modal-btn-ok" class="btn  btn-primary">OK</button>
+              <button id="edit-modal-btn-del" class="btn btn-warning">Delete Event</button>
+              <button id="edit-modal-btn-ok" class="btn btn-success">Save Updates</button>
               <button id="edit-modal-btn-cancel" class="btn btn-danger">Cancel</button>
             </div>
           </div>
@@ -225,12 +226,58 @@
     </div>
   </div>
   <!-- MODAL EDIT EVENT END -->
+  <!-- MODAL DELETE EVENT START -->
+  <div class="modal fade" id="del-modal" tabindex="-1" role="dialog" aria-labelledby="clear-modal-label" data-backdrop="static" aria-hidden="true" data-keyboard="false">
+    <div id="del-modal-dialog" class="modal-dialog" role="document">
+      <div id="del-modal-content" class="modal-content">
+        <div id="del-modal-header" class="modal-header">
+          <h5 id="del-modal-label" class="modal-title">Day.Planner</h5>
+        </div>
+        <div id="del-modal-body" class="modal-body">
+          <form>
+            <label id="del-date-modal1-lbl" style="display:inline;">Event Date:</label>
+            <h6 id="del-date-modal2-lbl" style="display:inline; color: red;">Time.Format</h6>
+            <div class="form-group" style="margin: 0px;">
+              <label class="col-form-label">Edit Event Desc:</label>
+              <input type="text" placeholder="Edit Event Name ...." class="form-control" id="del-modal-eventname" maxlength="10" disabled>
+            </div>
+            <label id="del-modal-task-lbl" class="col-form-label">Event Type:</label>
+            <div id="del-rad-grp" class="form-group">
+              <div class="custom-control custom-radio">
+                <input type="radio" id="del-rad1" name="del-rad-modal" class="custom-control-input" checked="" value="In-Person" disabled="">
+                <label class="custom-control-label" for="del-rad1">In-Person</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input type="radio" id="del-rad2" name="del-rad-modal" class="custom-control-input" value="Commute" disabled="">
+                <label class="custom-control-label" for="del-rad2">Commute</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input type="radio" id="del-rad3" name="del-rad-modal" class="custom-control-input" value="Task" disabled="">
+                <label class="custom-control-label" for="del-rad3">Task</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input type="radio" id="del-rad4" name="del-rad-modal" class="custom-control-input" value="Personal" disabled="">
+                <label class="custom-control-label" for="del-rad4">Personal</label>
+              </div>
+            </div>
+          </form>
+          <div class="modal-footer">
+            <div id="edit-modal-footer">
+              <button id="del-modal-btn-ok" class="btn btn-warning">Delete Event</button>
+              <button id="del-modal-btn-cancel" class="btn btn-danger">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL DELETE EVENT END -->
   <!-- STICKY FOOTER START -->
   <footer>
     <!-- <div id="plan-timer" hidden>timer</div> -->
     <div class="sticky-footer">
       <div class="sf-container">
-        <small id="small-gatito">Copyright &copy; Gatito <i class="fas fa-cat">  </i></small>
+        <small id="small-gatito">Copyright &copy; Gatito <i class="fas fa-cat"> </i></small>
       </div>
     </div>
   </footer>

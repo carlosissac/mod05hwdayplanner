@@ -4,12 +4,12 @@ $(document).ready(function() {
 
         "eh" : eventHandler, //eventhandler obj
         "ec" : [], //eventcontainer
-        "e_id" : "", //event id
+        /*"e_id" : "", //event id
         "e_mom" : "", //moment.js obj
         "e_type" : "", //event_type 
         "e_desc" : "", //event description
         "e_valid" : "", //event valid/invalid
-
+*/
         "today" : "",
         "displayDate" : "",
         "displayFormat" : true,
@@ -255,7 +255,7 @@ $(document).ready(function() {
             return 0;
         },
 
-        modalEventInfoLoad: function(event_id) {
+        editModalEventInfoLoad: function(event_id) {
             var i=0;
             while(i<this.ec.length) {
                 if(this.ec[i].e_id === event_id) {
@@ -285,7 +285,48 @@ $(document).ready(function() {
             return 0;
         },
 
-        ///timerupdatedevent
+        delModalEventInfoLoad: function(event_id) {
+            var i=0;
+            while(i<this.ec.length) {
+                if(this.ec[i].e_id === event_id) {
+                    var desc = this.ec[i].e_desc;
+                    $("#del-modal-eventname").val(desc);
+                    var rad = this.ec[i].e_type;
+                    if(this.ec[i].e_type === "In-Person") {
+                        $("#del-rad1").prop('checked', true);
+                    }
+                    else if(this.ec[i].e_type === "Commute") {
+                        $("#del-rad2").prop('checked', true);
+                    }
+                    else if(this.ec[i].e_type === "Task") {
+                        $("#del-rad3").prop('checked', true);
+                    }
+                    else if(this.ec[i].e_type === "Personal") {
+                        $("#del-rad4").prop('checked', true);
+                    }
+                    else {
+                        //console.log("NA modalEventInfoLoad");
+                    }
+                    var val = this.ec[i].e_val;
+                    break;
+                }
+                i++;
+            }
+            return 0;
+        },
+
+        removeSingleEvent: function(e_id) {
+            var res = this.eh.removeSingleLS(e_id);
+            if(!res) {
+                this.fetchLS();
+                this.listBuilder();
+                return 0;
+            }
+            else {
+                return 1;
+            }
+        },
+
         userEditedEvent: function(e_id,event_desc,event_type) {
             var res = this.eh.updateToLS(e_id,event_desc,event_type,true);
             if(!res) {
@@ -310,15 +351,15 @@ $(document).ready(function() {
             }
         },
 
-        getEventContainerLenght: function() {
+        /*getEventContainerLenght: function() {
             return this.ec.length();
-        },
+        },*/
 
-        getEventID: function(index) {
+        /*getEventID: function(index) {
             return this.ec[index].e_id;
-        },
+        },*/
 
-        removeSingleEvent: function(e_id) {
+        /*removeSingleEvent: function(e_id) {
             var i=0;
             while(i<this.ec.length){
                 if(this.ec[i].e_id === e_id) {
@@ -330,7 +371,7 @@ $(document).ready(function() {
                 i++;
             }
             return 0;
-        },
+        },*/
 
         storeTodaysDate: function() {
             this.today = moment();
@@ -364,6 +405,16 @@ $(document).ready(function() {
 
     dp = dayPlanner;
 
+    $("#del-modal-btn-cancel").click(function(event) {
+        $("#del-modal").modal("hide"); 
+    });
+
+    $("#del-modal-btn-ok").click(function(event) {
+        var e_id = dp.getEventId();
+        dp.removeSingleEvent(e_id);
+        $("#del-modal").modal("hide");
+    });
+
     $("#edit-modal-btn-cancel").click(function(event) {
         $("#edit-modal").modal("hide"); 
     });
@@ -381,6 +432,12 @@ $(document).ready(function() {
             $("#edit-modal-msgarea").text("Description Missing");
             $("#edit-modal-msgarea").css('color', 'red');
         }
+    });
+
+    $("#edit-modal-btn-del").click(function(event) {
+        var e_id = dp.getEventId();
+        dp.removeSingleEvent(e_id);
+        $("#edit-modal").modal("hide");
     });
 
     $("#new-modal-btn-cancel").click(function(event) {
@@ -421,12 +478,20 @@ $(document).ready(function() {
             $("#new-modal").modal("show");
         }
         else if (eid && (es === 2)) {
-            dp.modalEventInfoLoad(eid);
+            dp.editModalEventInfoLoad(eid);
             $("#edit-date-modal2-lbl").text(ed + " " + ehr);
             $("#edit-modal").modal("show");
         }
+        else if ((eid && (es === 1)) || (eid && (es === 0))) {
+            //console.log("DELETE ONLY");
+            dp.delModalEventInfoLoad(eid);
+            $("#del-date-modal2-lbl").text(ed + " " + ehr);
+            $("#del-modal").modal("show");
+        }
         else {
-            console.log("NOTHING ON CLICK");
+            //console.log(es);
+            //console.log(eid);
+            //console.log("NOTHING ON CLICK");
         }
     });
 
@@ -500,7 +565,7 @@ $(document).ready(function() {
     setInterval(function(){
         count++;
         //console.log(count);
-        if(count>15) {
+        if(count>300) {
             count = 0;
             dp.fetchLS();
             dp.listBuilder();

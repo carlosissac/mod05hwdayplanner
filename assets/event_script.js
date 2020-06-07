@@ -24,7 +24,6 @@ var eventHandler = {
     },
 
     removeSingleLS: function(event_id) {
-        ///looks for eventID in buffer and updates values
         var buffer = JSON.parse(localStorage.getItem('eventContainerLS'));
         var i=0;
         while(i<buffer.length) {
@@ -40,8 +39,6 @@ var eventHandler = {
     },
 
     getLS: function() {
-        //RETREIVES ALL CONTENTS FROM LS
-        //RETURNS ARRAY
         const array = [];
         if(localStorage.getItem('eventContainerLS')) {
             var buffer = JSON.parse(localStorage.getItem('eventContainerLS'));
@@ -155,12 +152,17 @@ var eventHandler = {
             desc2 = "DEESC" + j;
             this.saveToLS(mock2,desc2,type2,true);
         }
+
+        var mock3 = moment();
+        var type3 = "Task";
+        desc3 = "DESC NOW";
+        this.saveToLS(mock3,desc3,type3,false);
+
     },
 
     clearLS: function() {
         this.buffer = [];
         localStorage.clear();
-        //this.saveToLS(,type,desc,true);          
     },
 
 };

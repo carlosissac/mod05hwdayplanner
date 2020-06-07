@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Quiz</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/cosmo/bootstrap.min.css"> 
+    <title>Day.Planner</title>
+    <!-- JQEURY LINKAGE -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- MOMENT.JS LINKAGE -->
+    <script src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
+    <!-- BOOTSTRAP LINKAGE -->    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/litera/bootstrap.min.css"> 
     <!-- FONTAWESOME LINKAGE -->    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css">
     <!-- BOOTSTRAP JS FOR NAV TOGGLE -->
@@ -15,17 +20,15 @@
     <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
-
   <!-- NAVBAR START -->
   <!-- switch between primary, dark and light -->                                              
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand mr-auto" href="./index.html"><i class="fas fa-code"></i> Code Quiz</a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand mr-auto" href="./index.html"><i class="fab fa-usb"></i> Day.Planner</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active"><a class="nav-link" href="#">About<span class="sr-only">(current)</span></a></li>
-        <li class="nav-item"><a class="nav-link" href="./scoreboard.html">Scoreboard</a></li>
-        <li class="nav-item"><a class="nav-link" href="./index.html">JsQuizApp</a></li>
+        <li class="nav-item" id="nav-about"><a class="nav-link" href="./about.html"> About</a></li>
+        <li class="nav-item active"><a class="nav-link" href="./index.html">Current.Day<span class="sr-only">(current)</span></a></li>
       </ul>
     </div>
   </nav>
@@ -41,13 +44,13 @@
               <h5 id="about-card-title" class="card-title">Module 04: Web API's</h5>
               <h6 id="about-card-subtitle" class="card-subtitle text-muted">Code Quiz</h6>
           </div>
-          <a target="_blank" href="https://www.instagram.com/rxskulls">
-            <img id="about-img" src="./assets/rxskulls.jpg" alt="Card image">
+          <a target="_blank" href="https://www.instagram.com/arko.clt/">
+            <img id="about-img" src="./assets/arko.jpg" alt="Card image">
           </a>
           <div id="about-card-body" class="card-body">
               <h5 id="about-card-subtxt" class="card-text">How To Use:</h5>
               <ul id="about-card-list-subtxt">
-                <li id="about-card-subtxt" class="card-text text-muted">Click <a style="color:#2780E3;">Start</a> in order to begin quiz.</li>
+                <li id="about-card-subtxt" class="card-text text-muted">Click on an  <a style="color:#02B875;">Start</a> in order to begin quiz.</li>
                 <li id="about-card-subtxt" class="card-text text-muted"><a style="color:#2780E3;">Write</a> your name and <a style="color:#2780E3;">Pick</a> your quiz mode.</li>
                 <li id="about-card-subtxt" class="card-text text-muted">Once quiz begins <a style="color:#2780E3;">Pick</a> an answer, you can click <a style="color:#2780E3;">Quit</a> anytime.</li>
                 <li id="about-card-subtxt" class="card-text text-muted">Click <a style="color:#2780E3;">Scoreboard</a> to see highest scores.</li>
@@ -58,11 +61,11 @@
             <li id="about-list-bottom" class="list-group-item">Image has a link to the artist's social media page embedded.</li>
           </ul>
           <div id="about-link-row" class="card-body">
-            <a target="_blank" href="https://github.com/carlosissac/mod04hwcodequiz" class="card-link">GitHub Repo</a>
-            <a target="_blank" href="https://bootswatch.com/cosmo/" class="card-link">Bootstrap Theme</a>
+            <a target="_blank" href="https://github.com/carlosissac/mod05hwdayplanner" class="card-link">GitHub Repo</a>
+            <a target="_blank" href="https://bootswatch.com/litera/" class="card-link">Bootstrap Theme</a>
           </div>
           <div id="about-timestamp-lbl" class="card-footer text-muted">
-            May 2020, G877+4R Portland, Oregon
+              June 2020, G877+4R Portland, Oregon
           </div>
         </div>
     </div>
