@@ -100,13 +100,21 @@
     text-align: center;
 }
 
+#new-modal-footer,
 #clear-modal-footer,
 #mock-modal-footer {
     text-align: right;
 }
 
+#clear-modal-msgarea,
 #mock-modal-msgarea {
     font-size: 0.9rem;
+}
+
+#new-rad-grp {
+    margin-bottom: 0px;
+    text-align: left;
+    padding-left: 2rem;
 }
 
 #about-img {

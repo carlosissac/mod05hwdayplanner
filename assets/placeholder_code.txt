@@ -64,3 +64,16 @@
                 }
                 j++;
             });*/
+
+             //$("#new-rd1").attr('checked','true');
+
+                     /*
+        createSingleEvent: function(month, day, year, hour, type, desc) {
+            this.e_mom = moment({ years: year, months: month, date: day, hours: hour, minutes:'0', seconds:'0', milliseconds:'0'});
+            this.e_type = type;
+            this.e_desc = desc;
+            this.e_valid = true;
+            this.e_id = this.eh.saveToLS(this.e_mom,this.e_type,this.e_desc,this.e_valid);
+            this.fetchLS();
+            return this.e_id;
+        },*/

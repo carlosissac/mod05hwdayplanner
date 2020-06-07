@@ -12,7 +12,28 @@ $(document).ready(function() {
 
         "today" : "",
         "displayDate" : "",
-        "displayFormat" : true, //AMPM = true, 24hour = false
+        "displayFormat" : true,
+
+        "realHour_buffer" : 0,
+        "eventId_buffer" : 0,
+
+        saveEventId: function(event_Id) {
+            this.eventId_buffer = event_Id;
+            return 0;
+        },
+
+        getEventId: function() {
+            return this.eventId_buffer;
+        },
+
+        saveRealHour: function(hour) {
+            this.realHour_buffer = hour;
+            return 0;
+        },
+
+        getRealHour: function() {
+            return this.realHour_buffer;
+        },
 
         clearLS: function() {
             this.eh.clearLS();
@@ -27,12 +48,10 @@ $(document).ready(function() {
 
         fetchLS: function() {
             this.ec = this.eh.getLS();
-            //console.log(this.ec);g
             return 0;
         },
 
         lbType: function(hour) {
-            //display date + hour vs Event Object moment
             var disp_date = this.displayDate;
             disp_date.hour(hour).minute(0).seconds(0).milliseconds(0);
             var i = 0;
@@ -48,7 +67,6 @@ $(document).ready(function() {
         },
 
         lbEventID: function(hour) {
-            //display date + hour vs Event Object moment
             var disp_date = this.displayDate;
             disp_date.hour(hour).minute(0).seconds(0).milliseconds(0);
             var i = 0;
@@ -64,7 +82,6 @@ $(document).ready(function() {
         },
 
         lbDesc: function(hour) {
-            //display date + hour vs Event Object moment
             var disp_date = this.displayDate;
             disp_date.hour(hour).minute(0).seconds(0).milliseconds(0);
             var i = 0;
@@ -95,8 +112,6 @@ $(document).ready(function() {
                     }
                 }
                 else {
-                    //PM
-                    //return (hour-=12) + "PM";
                     if ((hour>12) && (hour<20)) {
                         return "0" + (hour-=12) + "PM";
                     }
@@ -142,37 +157,40 @@ $(document).ready(function() {
         },
 
         listBuilder: function() {
-
             this.fetchLS();
-            
             $("#plan-table-body").empty();
             var i=0;
             while(i<24) {
                 
                 //////TR STARTS/////
-                var e_id = this.lbEventID(i);  //// retrieves e_ID
-                //// need function to verify and update valid tag according to time use lblTimeValidator 
+                var e_id = this.lbEventID(i);
                 var tr = document.createElement("tr");
                 $(tr).attr("id","plan-list-row");
+
                 if(this.lbTimeValidator(i) === 0) {
                     $(tr).attr("class","table-secondary");
+                    $(tr).attr("e-stat",0);
                 }
                 else if (this.lbTimeValidator(i) === 1) {
                     $(tr).attr("class","table-danger");
                     $(tr).attr("id","is-current");
+                    $(tr).attr("e-stat",1);
                 }
                 else if (this.lbTimeValidator(i) === 2) {
                     $(tr).attr("class","table-default");
+                    $(tr).attr("id","is-open");
+                    $(tr).attr("e-stat",2);
                 }
-                //if(e_id) {
-                    $(tr).attr("event-id",e_id);
-                //}
+                $(tr).attr("event-id",e_id);
+                $(tr).attr("real-hour",i);
                 //////TR ENDS/////
 
                 //////TD0 STARTS/////
                 var td0 = document.createElement("td");
                 $(td0).attr("id","plan-tbl-bdy-cel0");
                 $(td0).text(this.lbTimeFormatHandler(i));
+                $(tr).attr("e-hr",this.lbTimeFormatHandler(i));
+                $(tr).attr("e-day",this.displayDate.format('l'));
                 $(tr).append(td0);
                 //////TD0 ENDS/////
 
@@ -237,22 +255,59 @@ $(document).ready(function() {
             return 0;
         },
 
-        /*clearEventVariables: function() {
-            this.e_id = "";
-            this.e_mom = "";
-            this.e_type = "";
-            this.e_desc = "";
-            this.e_valid = "";
-        },*/
+        modalEventInfoLoad: function(event_id) {
+            var i=0;
+            while(i<this.ec.length) {
+                if(this.ec[i].e_id === event_id) {
+                    var desc = this.ec[i].e_desc;
+                    $("#edit-modal-eventname").val(desc);
+                    var rad = this.ec[i].e_type;
+                    if(this.ec[i].e_type === "In-Person") {
+                        $("#edit-rad1").prop('checked', true);
+                    }
+                    else if(this.ec[i].e_type === "Commute") {
+                        $("#edit-rad2").prop('checked', true);
+                    }
+                    else if(this.ec[i].e_type === "Task") {
+                        $("#edit-rad3").prop('checked', true);
+                    }
+                    else if(this.ec[i].e_type === "Personal") {
+                        $("#edit-rad4").prop('checked', true);
+                    }
+                    else {
+                        //console.log("NA modalEventInfoLoad");
+                    }
+                    var val = this.ec[i].e_val;
+                    break;
+                }
+                i++;
+            }
+            return 0;
+        },
 
-        createSingleEvent: function(month, day, year, hour, type, desc) {
-            this.e_mom = moment({ years: year, months: month, date: day, hours: hour, minutes:'0', seconds:'0', milliseconds:'0'});
-            this.e_type = type;
-            this.e_desc = desc;
-            this.e_valid = true;
-            this.e_id = this.eh.saveToLS(this.e_mom,this.e_type,this.e_desc,this.e_valid);
-            this.fetchLS();
-            return this.e_id;
+        ///timerupdatedevent
+        userEditedEvent: function(e_id,event_desc,event_type) {
+            var res = this.eh.updateToLS(e_id,event_desc,event_type,true);
+            if(!res) {
+                this.fetchLS();
+                this.listBuilder();
+                return 0;
+            }
+            else {
+                return 1;
+            }
+        },
+
+        createNewEvent: function(moment_obj,event_desc,event_type) {
+            var event_id = this.eh.saveToLS(moment_obj,event_desc,event_type,true);
+            if(event_id) {
+                this.fetchLS();
+                this.listBuilder();
+                return event_id;
+            }
+            else {
+                return 0;
+            }
         },
 
         getEventContainerLenght: function() {
@@ -269,22 +324,6 @@ $(document).ready(function() {
                 if(this.ec[i].e_id === e_id) {
                     this.ec.splice(i, 1);
                     this.eh.removeSingleLS(e_id);
-                    this.fetchLS();
-                    break;
-                }
-                i++;
-            }
-            return 0;
-        },
-
-        updateSingleEvent: function(e_id, type, desc, valid) {
-            var i=0;
-            while(i<this.ec.length){
-                if(this.ec[i].e_id === e_id) {
-                    this.ec[i].e_type = type;
-                    this.ec[i].e_desc = desc;
-                    this.ec[i].e_valid = valid;
-                    this.eh.updateToLS(e_id,type,desc,valid);
                     this.fetchLS();
                     break;
                 }
@@ -311,25 +350,6 @@ $(document).ready(function() {
             this.displayDate = this.displayDate.add(1, 'days');
         },
 
-        setDisplayDate: function() {
-            //moemnt.js month from 0-11
-            //var bd = moment();
-            //var bd2 = bd.year("1978").month("0").date("19");
-            //console.log(bd2.format('ll'));
-            //this.clearLSLoadMock();
-           // this.fetchLS();
-            //console.log(this.ec);
-            //var id2 = this.createSingleEvent("5","5","2020","20","Commute","GYYYYYYMMMM");
-            //console.log(this.ec);
-            //var id1 = this.getEventID(2);
-            //if(id2){
-            //this.updateSingleEvent(id2,"XXXXXX","MEEEEEETING", true);
-            //}
-            //console.log(this.ec);
-            //this.removeSingleEvent(id2);
-            return 0;
-        },
-
         timeFormatToggle: function() {
             if(this.displayFormat) {
                 this.displayFormat = false;
@@ -339,13 +359,79 @@ $(document).ready(function() {
                 this.displayFormat = true;
                 $("#time-format-lbl").text("AM.PM");
             }
+        },
+
+        scheduler: function() {
+
         }
+
     };
 
     dp = dayPlanner;
 
+    $("#edit-modal-btn-cancel").click(function(event) {
+        $("#edit-modal").modal("hide"); 
+    });
+
+    $("#edit-modal-btn-ok").click(function(event) {
+        var e_id = dp.getEventId();
+        var e_desc = $("#edit-modal-eventname").val();
+        var e_type = $('input[name=edit-rad-modal]:checked').val();
+
+        if(e_desc) {
+            dp.userEditedEvent(e_id,e_desc,e_type);
+            $("#edit-modal").modal("hide");
+        }
+        else {
+            $("#edit-modal-msgarea").text("Description Missing");
+            $("#edit-modal-msgarea").css('color', 'red');
+        }
+    });
+
+    $("#new-modal-btn-cancel").click(function(event) {
+        $("#new-modal").modal("hide"); 
+    });
+    
+    $("#new-modal-btn-ok").click(function(event) {
+        var e_desc = $("#new-modal-eventname").val();
+        var e_type = $('input[name=new-rad-modal]:checked').val();
+        var dd = dp.displayDate;
+        var rh = dp.getRealHour();
+        dd.hour(rh).minute(0).seconds(0).milliseconds(0);
+        if(e_desc) {
+            dp.createNewEvent(dd,e_desc,e_type);
+            $("#new-modal").modal("hide");
+        }
+        else {
+            $("#new-modal-msgarea").text("Description Missing");
+            $("#new-modal-msgarea").css('color', 'red');
+        }
+    });
+
     $(document.body).on("click", "tr[event-id]", function() {
-        console.log($(this).attr('event-id'));
+        var eid = Number($(this).attr('event-id'));
+        var es = Number($(this).attr('e-stat'));
+        var ehr = String($(this).attr('e-hr'));
+        var ed = String($(this).attr('e-day'));
+        var rh = Number($(this).attr("real-hour"));
+        dp.saveRealHour(rh);
+        dp.saveEventId(eid);
+
+        if(!eid && (es === 2)) {
+            $("#new-modal-eventname").val("");
+            $("#new-modal-msgarea").text("");
+            $("#new-modal-msgarea").css('color', 'black');
+            $("#new-rad1").prop('checked', true);
+            $("#new-date-modal2-lbl").text(ed + " " + ehr);
+            $("#new-modal").modal("show");
+        }
+        else if (eid && (es === 2)) {
+            dp.modalEventInfoLoad(eid);
+            $("#edit-modal").modal("show");
+        }
+        else {
+            console.log("NOTHING ON CLICK");
+        }
     });
 
     $("#clear-modal-btn-ok").click(function(event) {
@@ -377,7 +463,7 @@ $(document).ready(function() {
 
     $("#nav-mock").click(function(event) {
         $("#mock-modal").modal("show"); 
-        $("#mock-modal-msgarea").val("TEST MODE.\nAll events will be cleared from Storage and 4 Mock events be loaded for testing purposes.\nEvents will start 2 hours from this moment and will be 2 hours appart from each other.\nClick \"OK\" to proceed and \"Cancel\" to exit.");
+        $("#mock-modal-msgarea").val("All events will be cleared from Storage and 8 Mock events be loaded for testing purposes.\n4 will be 2 hours apart from each other starting from now into the future, 4 will 2 hours apart from each other into the past.\nClick \"OK\" to proceed and \"Cancel\" to exit.");
     });
 
     $("#nav-format").click(function(event) {
@@ -409,8 +495,22 @@ $(document).ready(function() {
             $("#time-format-lbl").text("24Hr.");
         }
         dp.listBuilder();
+        dp.scheduler();
         return 0;
-    }
+    }   
 
     currentState();
+
+    var count = 0;
+    setInterval(function(){
+        count++;
+        console.log(count);
+        if(count>15) {
+            count = 0;
+            dp.fetchLS();
+            dp.listBuilder();
+        }
+
+    }, 1000);
+
 });

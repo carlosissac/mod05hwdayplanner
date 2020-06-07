@@ -57,14 +57,13 @@ var eventHandler = {
         }
     },
 
-    updateToLS: function(event_id, type, desc, valid) {
-        ///looks for eventID in buffer and updates values
+    updateToLS: function(event_id, desc, type, valid) {
         var buffer = JSON.parse(localStorage.getItem('eventContainerLS'));
         var i=0;
         while(i<buffer.length) {
             if(buffer[i].e_id === event_id) {
-                buffer[i].e_type = type;
                 buffer[i].e_desc = desc;
+                buffer[i].e_type = type;
                 buffer[i].e_valid = valid;
                 break;
             }
@@ -72,20 +71,19 @@ var eventHandler = {
         }
         localStorage.setItem('eventContainerLS', JSON.stringify(buffer));
         //console.log(JSON.parse(localStorage.getItem('eventContainerLS')));
+        return 0;
     },
 
-    saveToLS: function(moment_obj, type, desc, valid) {
+    saveToLS: function(moment_obj, desc, type, valid) {
         const array = [];
         let new_entry = {
                 'e_id' : this.getValidEventID(),
                 'mom_obj' : moment_obj,
-                'e_type' : type,
-                'e_desc' : desc,
+                'e_desc'  : desc,
+                'e_type'  : type,
                 'e_valid' : valid, 
         };
-        /// TAKES NEW EVENT 
-        /// APPENDS TO BUFFER
-        /// SAVES TO LS 
+
         if(localStorage.getItem('eventContainerLS')) {
             var buffer = JSON.parse(localStorage.getItem('eventContainerLS'));
             for(var i=0; i<buffer.length; i++) {
@@ -95,10 +93,6 @@ var eventHandler = {
         array.push(new_entry);
         localStorage.setItem('eventContainerLS', JSON.stringify(array));
         if(array.length>1) {
-            ///TAKES WHATS STORED IN LS 
-            ///CREATES A NEW BUFFER
-            ///ARRANGES EVENTS FROM NEWEST TO OLDEST
-            ///SAVES TO LS
             const array2 = [];
             if(localStorage.getItem('eventContainerLS')) {
                 var buffer2 = JSON.parse(localStorage.getItem('eventContainerLS'));
@@ -116,32 +110,50 @@ var eventHandler = {
     clearLSLoadMock: function() {
         this.buffer = [];
         localStorage.clear();
-        //4 MOCK EVENTS EVERY OTHER 2 HOURS
-        var mock = moment();
-        var type = "";
+
+        var type1 = "";
+        var mock1 = moment();
         for(var i=0;i<4;i++) {
-            mock.add(2, 'hour');
-            if(i === 0) { 
-                type = "In-Person";
+            mock1.subtract(2, 'hour');
+            if(i === 0) {
+                type1 = "In-Person";
             }
-            else if (i === 1) { 
-                type = "Commute";
+            else if (i === 1) {
+                type1 = "Commute";
             }
             else if (i === 2) {
-                type = "Task";
+                type1 = "Task";
             }
             else if (i === 3) {
-                type = "Personal";
+                type1 = "Personal";
             }
             else {
                 console.log("clearAllLoadMockData NA");
             }
-            desc = "DEEEEEESC" + i;
-            //console.log(mock + " " + type + " " + desc);
-            //this.saveToLocalStorage(mock,type,desc,true,true);
-            //this.saveToLocalStorage(mock,type,desc);
-            this.saveToLS(mock,type,desc,true);
-            
+            desc1 = "DEESC-" + i;
+            this.saveToLS(mock1,desc1,type1,false);
+        }
+        var type2 = "";
+        var mock2 = moment();
+        for(var j=0;j<4;j++) {
+            mock2.add(2, 'hour');
+            if(j === 0) {
+                type2 = "In-Person";
+            }
+            else if (j === 1) {
+                type2 = "Commute";
+            }
+            else if (j === 2) {
+                type2 = "Task";
+            }
+            else if (j === 3) {
+                type2 = "Personal";
+            }
+            else {
+                console.log("clearAllLoadMockData NA");
+            }
+            desc2 = "DEESC" + i;
+            this.saveToLS(mock2,desc2,type2,true);
         }
     },
 

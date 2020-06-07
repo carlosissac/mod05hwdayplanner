@@ -19,7 +19,6 @@
     <!-- CSS REF -->
     <link rel="stylesheet" href="./assets/style.css">
 <body>
-  
   <!-- NAVBAR START -->
   <!-- switch between primary, dark and light -->                                              
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -29,9 +28,9 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item" id="nav-about"><a class="nav-link" href="./about.html"> About</a></li>
         <li class="nav-item" id="nav-clear"><a class="nav-link" href="#">Clear.All</a></li>
-        <li class="nav-item" id="nav-mock"><a class="nav-link" href="#">Test.Mode</a></li>
+        <li class="nav-item" id="nav-mock"><a class="nav-link" href="#">Mock.Events</a></li>
         <li class="nav-item" id="nav-format"><a class="nav-link" id="nav-link-format" href="#">Time.Format</a></li>
-        <li class="nav-item active"><a class="nav-link" href="./index.html">Current<span class="sr-only">(current)</span></a></li>
+        <li class="nav-item active"><a class="nav-link" href="./index.html">Current.Day<span class="sr-only">(current)</span></a></li>
       </ul>
     </div>
   </nav>
@@ -84,14 +83,15 @@
         <div id="mock-modal-body" class="modal-body">
           <form>
             <div class="form-group" style="margin: 0px;">
-              <label class="col-form-label">Message:</label>
-              <textarea class="form-control" rows="7" id="mock-modal-msgarea" readonly></textarea>
+              <label class="col-form-label">Mock Events Mode Directions:</label>
+              <textarea class="form-control" rows="5" id="mock-modal-msgarea" readonly></textarea>
             </div>
           </form>
-          <div class="modal-footer"></div>
+          <div class="modal-footer">
             <div id="mock-modal-footer">
               <button id="mock-modal-btn-ok" class="btn  btn-primary">OK</button>
               <button id="mock-modal-btn-cancel" class="btn btn-danger">Cancel</button>
+            </div>
           </div>
         </div>
       </div>
@@ -108,23 +108,126 @@
         <div id="clear-modal-body" class="modal-body">
           <form>
             <div class="form-group" style="margin: 0px;">
-              <label class="col-form-label">Message:</label>
-              <textarea class="form-control" rows="3" id="clear-modal-msgarea" readonly></textarea>
+              <label class="col-form-label">Clear All Instructions:</label>
+              <textarea class="form-control" rows="2" id="clear-modal-msgarea" readonly></textarea>
             </div>
           </form>
-          <div class="modal-footer"></div>
+          <div class="modal-footer">
             <div id="clear-modal-footer">
               <button id="clear-modal-btn-ok" class="btn  btn-primary">OK</button>
               <button id="clear-modal-btn-cancel" class="btn btn-danger">Cancel</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
   <!-- MODAL CLEAR END -->
+  <!-- MODAL NEW EVENT START -->
+  <div class="modal fade" id="new-modal" tabindex="-1" role="dialog" aria-labelledby="clear-modal-label" data-backdrop="static" aria-hidden="true" data-keyboard="false">
+    <div id="new-modal-dialog" class="modal-dialog" role="document">
+      <div id="new-modal-content" class="modal-content">
+        <div id="new-modal-header" class="modal-header">
+          <h5 id="new-modal-label" class="modal-title">Day.Planner</h5>
+        </div>
+        <div id="new-modal-body" class="modal-body">
+          <form>
+            <label id="new-date-modal1-lbl" style="display:inline;">New Event Date:</label>
+            <h6 id="new-date-modal2-lbl" style="display:inline; color: blue;">Time.Format</h6>
+
+            <div class="form-group" style="margin: 0px;">
+              <label class="col-form-label">New Event Desc:</label>
+              <input type="text" placeholder="Type New Event Name ...." class="form-control" id="new-modal-eventname" maxlength="10">
+            </div>
+            <label id="new-modal-task-lbl" class="col-form-label">New Event Type:</label>
+            <div id="new-rad-grp" class="form-group">
+              <div class="custom-control custom-radio">
+                <input type="radio" id="new-rad1" name="new-rad-modal" class="custom-control-input" checked="" value="In-Person">
+                <label class="custom-control-label" for="new-rad1">In-Person</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input type="radio" id="new-rad2" name="new-rad-modal" class="custom-control-input" value="Commute">
+                <label class="custom-control-label" for="new-rad2">Commute</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input type="radio" id="new-rad3" name="new-rad-modal" class="custom-control-input" value="Task">
+                <label class="custom-control-label" for="new-rad3">Task</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input type="radio" id="new-rad4" name="new-rad-modal" class="custom-control-input" value="Personal">
+                <label class="custom-control-label" for="new-rad4">Personal</label>
+              </div>
+            </div>
+            <div class="form-group" style="margin: 0px;">
+              <label class="col-form-label">Clear All Instructions:</label>
+              <textarea class="form-control" rows="1" id="new-modal-msgarea" readonly></textarea>
+            </div>
+          </form>
+          <div class="modal-footer">
+            <div id="new-modal-footer">
+              <button id="new-modal-btn-ok" class="btn  btn-primary">OK</button>
+              <button id="new-modal-btn-cancel" class="btn btn-danger">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL NEW EVENT END -->
+  <!-- MODAL EDIT EVENT START -->
+  <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="clear-modal-label" data-backdrop="static" aria-hidden="true" data-keyboard="false">
+    <div id="edit-modal-dialog" class="modal-dialog" role="document">
+      <div id="edit-modal-content" class="modal-content">
+        <div id="edit-modal-header" class="modal-header">
+          <h5 id="edit-modal-label" class="modal-title">Day.Planner</h5>
+        </div>
+        <div id="edit-modal-body" class="modal-body">
+          <form>
+            <label id="edit-date-modal1-lbl" style="display:inline;">Event Date:</label>
+            <h6 id="edit-date-modal2-lbl" style="display:inline; color: green;">Time.Format</h6>
+
+            <div class="form-group" style="margin: 0px;">
+              <label class="col-form-label">Edit Event Desc:</label>
+              <input type="text" placeholder="Edit Event Name ...." class="form-control" id="edit-modal-eventname" maxlength="10">
+            </div>
+            <label id="edit-modal-task-lbl" class="col-form-label">Event Type:</label>
+            <div id="edit-rad-grp" class="form-group">
+              <div class="custom-control custom-radio">
+                <input type="radio" id="edit-rad1" name="edit-rad-modal" class="custom-control-input" checked="" value="In-Person">
+                <label class="custom-control-label" for="edit-rad1">In-Person</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input type="radio" id="edit-rad2" name="edit-rad-modal" class="custom-control-input" value="Commute">
+                <label class="custom-control-label" for="edit-rad2">Commute</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input type="radio" id="edit-rad3" name="edit-rad-modal" class="custom-control-input" value="Task">
+                <label class="custom-control-label" for="edit-rad3">Task</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input type="radio" id="edit-rad4" name="edit-rad-modal" class="custom-control-input" value="Personal">
+                <label class="custom-control-label" for="edit-rad4">Personal</label>
+              </div>
+            </div>
+            <div class="form-group" style="margin: 0px;">
+              <label class="col-form-label">Clear All Instructions:</label>
+              <textarea class="form-control" rows="1" id="edit-modal-msgarea" readonly></textarea>
+            </div>
+          </form>
+          <div class="modal-footer">
+            <div id="edit-modal-footer">
+              <button id="edit-modal-btn-ok" class="btn  btn-primary">OK</button>
+              <button id="edit-modal-btn-cancel" class="btn btn-danger">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL EDIT EVENT END -->
   <!-- STICKY FOOTER START -->
   <footer>
-    <h1 id="plan-timer" class="time" hidden>timer</h1>
+    <!-- <div id="plan-timer" hidden>timer</div> -->
     <div class="sticky-footer">
       <div class="sf-container">
         <small id="small-gatito">Copyright &copy; Gatito <i class="fas fa-cat">  </i></small>
