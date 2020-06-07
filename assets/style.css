@@ -235,7 +235,7 @@
         padding: 1.5rem;
     }
     #plan-table-body {
-        height: 435px;
+        height: 425px;
     }
 }
 
@@ -296,7 +296,7 @@
 }
 
 /*allelse*/
-@media (min-height: 1367px) {
+@media (max-height: 1367px) {
 
     #main-section-row-top {
         padding: 0.5rem;
@@ -305,6 +305,6 @@
         padding: 1.5rem;
     }
     #plan-table-body {
-        height: px;
+        height: 600px;
     }
 }
