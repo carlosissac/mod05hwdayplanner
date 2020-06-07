@@ -491,7 +491,6 @@ $(document).ready(function() {
             $("#time-format-lbl").text("24Hr.");
         }
         dp.listBuilder();
-        dp.scheduler();
         return 0;
     }   
 
@@ -506,7 +505,6 @@ $(document).ready(function() {
             dp.fetchLS();
             dp.listBuilder();
         }
-
     }, 1000);
 
 });
