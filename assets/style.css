@@ -235,7 +235,7 @@
         padding: 1.5rem;
     }
     #plan-table-body {
-        height: 425px;
+        height: 100px;
     }
 }
 
@@ -305,6 +305,6 @@
         padding: 1.5rem;
     }
     #plan-table-body {
-        height: 600px;
+        height: 515px;
     }
 }

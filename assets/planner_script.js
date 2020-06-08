@@ -4,16 +4,9 @@ $(document).ready(function() {
 
         "eh" : eventHandler, //eventhandler obj
         "ec" : [], //eventcontainer
-        /*"e_id" : "", //event id
-        "e_mom" : "", //moment.js obj
-        "e_type" : "", //event_type 
-        "e_desc" : "", //event description
-        "e_valid" : "", //event valid/invalid
-*/
         "today" : "",
         "displayDate" : "",
         "displayFormat" : true,
-
         "realHour_buffer" : 0,
         "eventId_buffer" : 0,
 
@@ -232,7 +225,6 @@ $(document).ready(function() {
                 }
                 else {
                     if((this.lbTimeValidator(i) === 0) || (this.lbTimeValidator(i) === 1)) {
-                        //we will have to review once we have eventContainer plugged in 
                     }
                     else if (this.lbTimeValidator(i) === 2) {
                         $(sp).attr("class","badge badge-dark");
@@ -351,28 +343,6 @@ $(document).ready(function() {
             }
         },
 
-        /*getEventContainerLenght: function() {
-            return this.ec.length();
-        },*/
-
-        /*getEventID: function(index) {
-            return this.ec[index].e_id;
-        },*/
-
-        /*removeSingleEvent: function(e_id) {
-            var i=0;
-            while(i<this.ec.length){
-                if(this.ec[i].e_id === e_id) {
-                    this.ec.splice(i, 1);
-                    this.eh.removeSingleLS(e_id);
-                    this.fetchLS();
-                    break;
-                }
-                i++;
-            }
-            return 0;
-        },*/
-
         storeTodaysDate: function() {
             this.today = moment();
             this.displayDate = moment();
@@ -483,15 +453,12 @@ $(document).ready(function() {
             $("#edit-modal").modal("show");
         }
         else if ((eid && (es === 1)) || (eid && (es === 0))) {
-            //console.log("DELETE ONLY");
             dp.delModalEventInfoLoad(eid);
             $("#del-date-modal2-lbl").text(ed + " " + ehr);
             $("#del-modal").modal("show");
         }
         else {
-            //console.log(es);
-            //console.log(eid);
-            //console.log("NOTHING ON CLICK");
+
         }
     });
 
@@ -564,7 +531,6 @@ $(document).ready(function() {
     var count = 0;
     setInterval(function(){
         count++;
-        //console.log(count);
         if(count>300) {
             count = 0;
             dp.fetchLS();
